@@ -1,6 +1,84 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Line Chart with D3.js</title>
+    <style>
+        .line {
+            fill: none;
+            stroke-width: 2px;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+    </style>
+</head>
 <body>
+    <svg width="800" height="500"></svg>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        // Example data
+        const data = [
+            { date: '2020-01-01', categoryA: 20, categoryB: 10, categoryC: 50 },
+            { date: '2020-02-01', categoryA: 30, categoryB: 40, categoryC: 20 },
+            { date: '2020-03-01', categoryA: 50, categoryB: 20, categoryC: 30 },
+            { date: '2020-04-01', categoryA: 40, categoryB: 60, categoryC: 10 },
+            { date: '2020-05-01', categoryA: 30, categoryB: 80, categoryC: 20 },
+            { date: '2020-06-01', categoryA: 80, categoryB: 30, categoryC: 40 },
+            { date: '2020-07-01', categoryA: 50, categoryB: 70, categoryC: 60 }
+        ];
 
-<h1 class="theme_1" style="text-align: center; font-family: 'Montserrat', sans-serif;"> House Party 2024 </h1>
+        // Set dimensions and margins of the graph
+        const margin = {top: 30, right: 30, bottom: 70, left: 60},
+            width = 800 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        // Append the svg object to the body of the page
+        const svg = d3.select("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        // Parse the date / time
+        const parseTime = d3.timeParse("%Y-%m-%d");
+
+        // X scale and Axis
+        const x = d3.scaleTime()
+            .domain(d3.extent(data, function(d) { return parseTime(d.date); }))
+            .range([0, width]);
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        // Y scale and Axis
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(data, function(d) { return Math.max(d.categoryA, d.categoryB, d.categoryC); })])
+            .range([height, 0]);
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        // Add the line
+        const addLine = function(category, color) {
+            const line = d3.line()
+                .x(function(d) { return x(parseTime(d.date)); })
+                .y(function(d) { return y(d[category]); });
+            svg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .style("stroke", color)
+                .attr("d", line);
+        };
+
+        // Adding lines for each category
+        addLine("categoryA", "steelblue");
+        addLine("categoryB", "red");
+        addLine("categoryC", "green");
+    </script>
 </body>
+</html>
