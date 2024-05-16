@@ -24,13 +24,13 @@
     <script>
         // Example data
         const data = [
-            { date: '2024-05-18 18:17:36', categoryA: 20, categoryB: 10, categoryC: 50 },
-            { date: '2024-05-18 19:17:36', categoryA: 30, categoryB: 40, categoryC: 20 },
-            { date: '2024-05-18 20:17:36', categoryA: 50, categoryB: 20, categoryC: 30 },
-            { date: '2024-05-18 21:17:36', categoryA: 40, categoryB: 60, categoryC: 10 },
-            { date: '2024-05-18 22:17:36', categoryA: 30, categoryB: 80, categoryC: 20 },
-            { date: '2024-05-18 23:17:36', categoryA: 80, categoryB: 30, categoryC: 40 },
-            { date: '2024-05-19 00:17:36', categoryA: 50, categoryB: 70, categoryC: 60 }
+            { date: '2024-05-18', categoryA: 20, categoryB: 10, categoryC: 50 },
+            { date: '2024-05-19', categoryA: 30, categoryB: 40, categoryC: 20 },
+            { date: '2024-05-20', categoryA: 50, categoryB: 20, categoryC: 30 },
+            { date: '2024-05-21', categoryA: 40, categoryB: 60, categoryC: 10 },
+            { date: '2024-05-22', categoryA: 30, categoryB: 80, categoryC: 20 },
+            { date: '2024-05-23', categoryA: 80, categoryB: 30, categoryC: 40 },
+            { date: '2024-05-24', categoryA: 50, categoryB: 70, categoryC: 60 }
         ];
 
         // Set dimensions and margins of the graph
@@ -47,7 +47,7 @@
                 "translate(" + margin.left + "," + margin.top + ")");
 
         // Parse the date / time
-        const parseTime = d3.timeParse("%Y-%m-%d %H:%M:S");
+        const parseTime = d3.timeParse("%Y-%m-%d");
 
         // X scale and Axis
         const x = d3.scaleTime()
