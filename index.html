@@ -24,13 +24,13 @@
     <script>
         // Example data
         const data = [
-            { date: '2020-01-01', categoryA: 20, categoryB: 10, categoryC: 50 },
-            { date: '2020-02-01', categoryA: 30, categoryB: 40, categoryC: 20 },
-            { date: '2020-03-01', categoryA: 50, categoryB: 20, categoryC: 30 },
-            { date: '2020-04-01', categoryA: 40, categoryB: 60, categoryC: 10 },
-            { date: '2020-05-01', categoryA: 30, categoryB: 80, categoryC: 20 },
-            { date: '2020-06-01', categoryA: 80, categoryB: 30, categoryC: 40 },
-            { date: '2020-07-01', categoryA: 50, categoryB: 70, categoryC: 60 }
+            { date: '2024-05-18 21:00:00', categoryA: 20, categoryB: 10, categoryC: 50 },
+            { date: '2024-05-18 21:30:00', categoryA: 30, categoryB: 40, categoryC: 20 },
+            { date: '2024-05-18 22:00:00', categoryA: 50, categoryB: 20, categoryC: 30 },
+            { date: '2024-05-18 22:30:00', categoryA: 40, categoryB: 60, categoryC: 10 },
+            { date: '2024-05-18 23:00:00', categoryA: 30, categoryB: 80, categoryC: 20 },
+            { date: '2024-05-18 23:30:00', categoryA: 80, categoryB: 30, categoryC: 40 },
+            { date: '2024-05-19 00:00:00', categoryA: 50, categoryB: 70, categoryC: 60 }
         ];
 
         // Set dimensions and margins of the graph
@@ -103,5 +103,11 @@
             .style("text-anchor", "end")
             .text(function(d) { return d; });
     </script>
+<style>
+svg {
+  margin: 0 auto; /* poor attempt at centering */
+  display: block;
+}
+</style>
 </body>
 </html>
